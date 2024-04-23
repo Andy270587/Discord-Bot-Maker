@@ -1,0 +1,92 @@
+<body class="overlay-scrollbar">
+	<link rel="stylesheet" type="text/css" href="https://<%- req.get('host') %>/css/fontawesome-free/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" type="text/css" href="https://<%- req.get('host') %>/css/style.css">
+
+<style>.bot-btn{
+width: 110px;
+height: 40px;
+border-radius: 25px;
+border: none;
+color: white;
+background-color: #181818;
+transition: 0.5s;
+}
+.bot-btn:hover{
+  background-color: white;
+  color: #181818;
+ 
+} </style>
+  <div class="commands-bg">
+	<div class="bot-wrapper">
+		<div class="row">
+     <div class="col-12 col-m-12 col-sm-12">
+				<div class="counter" style="background-color:#23242D;">
+        
+					<h1 style="font-size:55;">
+          Select a bot to import command in
+          </h1>
+				</div>
+			</div>
+      <script>
+        function select(botid){ 
+         if(!botid)return;
+           const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = `https://<%- req.get('host') %>/import/${botid}`;
+     const params = {
+     code: '<%-`${req.body.code}`%>',
+     description: '<%-`${req.body.description}`%>',
+     name: '<%-`${req.body.name}`%>'
+     } 
+  for (const key in  params ) {
+    if (params.hasOwnProperty(key)) {
+      var hiddenField = document.createElement(`input`);
+      hiddenField.type = 'hidden';
+      hiddenField.name = key;
+      hiddenField.value =  params[key];
+
+      form.appendChild(hiddenField);
+    }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+         
+        }
+      </script>
+     <% botsdata.forEach((botxd) => {
+     if(botxd.ownerid != req.user.id) return
+      
+  
+    %>
+			<div class="col-4 col-m-6 col-sm-6">
+				<div class="bot-counter ">
+         <img class="bot-logo" src="<%- botxd.avatarurl %>">		
+				<h1><%- botxd.botname %></h1>
+
+        
+        
+           <button type="submit" name="btnSubmit" class="bot-btn" onclick="select('<%- botxd.botID %>')">Select</button>
+
+       
+			</div>
+      </div>
+      <% }) %>
+      <div class="col-4 col-m-6 col-sm-6">
+                 <div class="bot-counter ">
+         <i class="fas fa-plus-circle" style="font-size:100px;"></i>    
+                <h1>Create a bot</h1>
+        <button type="submit" name="btnSubmit" class="bot-btn" onclick="location.href = 'https://<%- req.get('host') %>/createbot'">Create</button>
+            </div>
+      </div>
+		
+		
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<script src="https://<%- req.get('host') %>/js/index.js"></script>
+
+</body>

@@ -1,0 +1,173 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+<body>
+<script type="text/javascript">
+var urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.has('error') && urlParams.get('error')){
+    Swal.fire({
+     icon: 'error',
+     title: 'Oops...',
+     text: urlParams.get('message'),
+     footer: 'Copyright 2021 &copy ClientLabs - All right reserved.'
+    }).then((result) => {
+  if (result.isConfirmed) {
+
+  }
+  })
+  }
+     if(urlParams.has('success') && urlParams.get('success')){
+    Swal.fire({
+     icon: 'success',
+     title: 'Succesfull...',
+     closeOnConfirm: false,
+     text: urlParams.get('message'),
+     footer: 'Copyright 2021 &copy ClientLabs - All right reserved.'
+    }).then((result) => {
+  if (result.isConfirmed) {
+   
+  }
+    
+})
+}
+
+</script>
+</body>
+<head>
+	<title>BHFD | Bot Hoster For Discord</title>
+
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/889759169362690058/903341813597864087/1c54f7b06d7723c21afc5035bf88a5ef.png"/>
+
+	<!-- Import lib -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+	<link rel="stylesheet" type="text/css" href="https://<%- req.get('host') %>/css/fontawesome-free/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- End import lib -->
+
+	<link rel="stylesheet" type="text/css" href="https://<%- req.get('host') %>/css/style.css">
+</head>
+	<div class="navbar">
+		<!-- nav left -->
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link">
+					<i class="fas fa-bars" onclick="collapseSidebar()"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+					<a onclick="location.href = 'https://www.youtube.com/watch?v=xvFZjo5PgG0'" class="botmaker">
+								Bot Maker
+							</a>
+				
+			</li>
+		</ul>
+		<!-- end nav left -->
+		<!-- form -->
+	
+		<!-- end form -->
+		<!-- nav right -->
+		<ul class="navbar-nav nav-right">
+
+			
+			<li class="nav-item avt-wrapper">
+				<div class="avt dropdown">
+					<img src="https://cdn.discordapp.com/avatars/<%= req.user.id %>/<%= req.user.avatar %>.webp" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+					<ul id="user-menu" class="dropdown-menu">
+				
+			
+					<li  class="dropdown-menu-item">
+							<a href="https://<%- req.get('host') %>/bots" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-robot"></i>
+								</div>
+								<span>Bots</span>
+							</a>
+						</li>
+             <li  class="dropdown-menu-item">
+							<a href="https://<%- req.get('host') %>/createbot" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-plus"></i>
+								</div>
+								<span>Create Bot</span>
+							</a>
+						</li>
+						<li  class="dropdown-menu-item">
+							<a href="../../logout" class="dropdown-menu-link">
+								<div>
+									<i class="fas fa-sign-out-alt"></i>
+								</div>
+								<span>Logout</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<!-- end nav right -->
+	</div>
+	<div class="sidebar">
+		<ul class="sidebar-nav">
+			<li class="sidebar-nav-item">
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-tachometer-alt"></i>
+					</div>
+					<span>
+						Dashboard
+					</span>
+				</a>
+			</li>
+			<li class="sidebar-nav-item">
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/commands" class="sidebar-nav-link ">
+					<div>
+						<i class="far fa-address-book"></i>
+					</div>
+					<span>Commands</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/cc" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-terminal"></i>
+					</div>
+					<span>Create Command</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/events" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-calendar-week"></i>
+					</div>
+					<span>Events</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/ce" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-code"></i>
+					</div>
+					<span>Create Event</span>
+				</a>
+			</li>
+			<li  class="sidebar-nav-item">
+    
+				<a href="https://<%- req.get('host') %>/bot/<%- req.params.botID%>/settings" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-cog"></i>
+					</div>
+					<span>Settings</span>
+				</a>
+			</li>
+      <li  class="sidebar-nav-item">
+    
+				<a href="https://discord.com/oauth2/authorize?client_id=<%- req.params.botID%>&permissions=8&scope=bot%20applications.commands" class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-user-plus"></i>
+					</div>
+					<span>Invite</span>
+				</a>
+			</li>
+			
+		</ul>
+	</div>

